@@ -62,3 +62,17 @@ nav a {
     justify-content: center;
     gap: 30px;
 }
+.video-box {
+    width: 700px;
+    height: 400px;
+
+    margin: 30px auto;
+
+    background-color: #ddd;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+}

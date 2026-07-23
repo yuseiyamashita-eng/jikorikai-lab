@@ -1,3 +1,6 @@
+// ======================
+// 第1章の動画一覧
+// ======================
 const chapter1Videos = [
     "chapter1-video1",
     "chapter1-video2",
@@ -5,6 +8,10 @@ const chapter1Videos = [
     "chapter1-video4",
     "chapter1-video5"
 ];
+
+// ======================
+// 動画ページ
+// ======================
 const button = document.getElementById("completeBtn");
 
 if (button) {
@@ -36,17 +43,30 @@ if (button) {
     });
 
 }
-const status = document.getElementById("video1Status");
 
-if (status) {
-    const completed = localStorage.getItem("chapter1-video1") === "true";
+// ======================
+// 動画一覧ページ
+// ======================
+if (document.getElementById("video1Status")) {
 
-    if (completed) {
-        status.textContent = "☑";
-    } else {
-        status.textContent = "☐";
+    for (let i = 0; i < chapter1Videos.length; i++) {
+
+        const status = document.getElementById(`video${i + 1}Status`);
+
+        if (!status) continue;
+
+        if (localStorage.getItem(chapter1Videos[i]) === "true") {
+            status.textContent = "☑";
+        } else {
+            status.textContent = "☐";
+        }
+
     }
+
 }
+// ======================
+// ホーム画面
+// ======================
 const progressBar = document.getElementById("chapter1Progress");
 
 if (progressBar) {

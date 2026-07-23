@@ -16,8 +16,9 @@ const button = document.getElementById("completeBtn");
 
 if (button) {
 
+    const chapterNumber = document.body.dataset.chapter;
     const videoNumber = document.body.dataset.video;
-    const storageKey = `chapter1-video${videoNumber}`;
+    const storageKey = `chapter${chapterNumber}-video${videoNumber}`;
 
     let completed = localStorage.getItem(storageKey) === "true";
 

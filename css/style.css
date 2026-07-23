@@ -171,3 +171,22 @@ nav a {
 .video-table a:hover {
     color: #007bff;
 }
+.complete-button {
+    background-color: white;
+    color: #4f63c6;
+    border: 2px solid #4f63c6;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.complete-button.completed {
+    background-color: #4f63c6;
+    color: white;
+}
+.complete-button:hover {
+    background-color: #4f63c6;
+    color: white;
+}

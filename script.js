@@ -1,10 +1,17 @@
-const finishButton = document.getElementById("finishButton");
-const messageArea = document.getElementById("messageArea");
+const button = document.getElementById("completeBtn");
 
-finishButton.addEventListener("click", function () {
-    messageArea.innerHTML = `
-        <h2>🎉 お疲れさまでした！</h2>
-        <p>第1章の学習が完了しました。</p>
-        <button>○○の質問へ進む</button>
-    `;
+let completed = false;
+
+button.addEventListener("click", function () {
+
+    completed = !completed;
+
+    if (completed) {
+        button.textContent = "☑ 視聴済み";
+        button.classList.add("completed");
+    } else {
+        button.textContent = "☐ 視聴済みにする";
+        button.classList.remove("completed");
+    }
+
 });

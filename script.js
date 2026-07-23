@@ -16,7 +16,10 @@ const button = document.getElementById("completeBtn");
 
 if (button) {
 
-    let completed = localStorage.getItem("chapter1-video1") === "true";
+    const videoNumber = document.body.dataset.video;
+    const storageKey = `chapter1-video${videoNumber}`;
+
+    let completed = localStorage.getItem(storageKey) === "true";
 
     if (completed) {
         button.textContent = "☑ 視聴済み";
@@ -30,7 +33,7 @@ if (button) {
 
         completed = !completed;
 
-        localStorage.setItem("chapter1-video1", completed);
+        localStorage.setItem(storageKey, completed);
 
         if (completed) {
             button.textContent = "☑ 視聴済み";

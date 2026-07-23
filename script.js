@@ -1,3 +1,10 @@
+const chapter1Videos = [
+    "chapter1-video1",
+    "chapter1-video2",
+    "chapter1-video3",
+    "chapter1-video4",
+    "chapter1-video5"
+];
 const button = document.getElementById("completeBtn");
 
 if (button) {
@@ -39,4 +46,23 @@ if (status) {
     } else {
         status.textContent = "☐";
     }
+}
+const progressBar = document.getElementById("chapter1Progress");
+
+if (progressBar) {
+
+    let completedCount = 0;
+
+    for (let i = 0; i < chapter1Videos.length; i++) {
+
+        if (localStorage.getItem(chapter1Videos[i]) === "true") {
+            completedCount++;
+        }
+
+    }
+
+    const progress = (completedCount / chapter1Videos.length) * 100;
+
+    progressBar.style.width = progress + "%";
+
 }

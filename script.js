@@ -156,6 +156,23 @@ if (document.querySelector("textarea")) {
 const textareas = document.querySelectorAll("textarea");
 const storageKey = window.location.pathname.split("/").pop().replace(".html", "");
 
+function updateProgress() {
+
+  const savedAnswers = JSON.parse(localStorage.getItem(storageKey)) || {};
+
+  let answeredCount = 0;
+
+  textareas.forEach((textarea) => {
+    if (savedAnswers[textarea.id] && savedAnswers[textarea.id].trim() !== "") {
+      answeredCount++;
+    }
+  });
+
+  document.getElementById("progressText").textContent =
+    `進捗 ${answeredCount} / ${textareas.length}問回答済み`;
+
+}
+
 textareas.forEach((textarea) => {
 
   textarea.addEventListener("input", () => {
@@ -167,6 +184,8 @@ textareas.forEach((textarea) => {
     });
 
     localStorage.setItem(storageKey, JSON.stringify(answers));
+
+    updateProgress();
 
   });
 
@@ -187,4 +206,7 @@ if (savedAnswers) {
   });
 
 }
+
+updateProgress();
+
 }

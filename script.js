@@ -1,5 +1,5 @@
 // ======================
-// 第1章の動画一覧
+// Chapter1 データ
 // ======================
 const chapter1Videos = [
     "chapter1-video1",
@@ -23,9 +23,9 @@ if (button && document.body.dataset.chapter) {
 
     const chapterNumber = document.body.dataset.chapter;
     const videoNumber = document.body.dataset.video;
-    const storageKey = `chapter${chapterNumber}-video${videoNumber}`;
+    const videoStorageKey = `chapter${chapterNumber}-video${videoNumber}`;
 
-    let completed = localStorage.getItem(storageKey) === "true";
+    let completed = localStorage.getItem(videoStorageKey) === "true";
 
     if (completed) {
         button.textContent = "☑ 視聴済み";
@@ -39,7 +39,7 @@ if (button && document.body.dataset.chapter) {
 
         completed = !completed;
 
-        localStorage.setItem(storageKey, completed);
+        localStorage.setItem(videoStorageKey, completed);
 
         if (completed) {
             button.textContent = "☑ 視聴済み";
@@ -115,6 +115,9 @@ if (progressBar) {
 
 }
 
+// ======================
+// ワークページ（回答完了）
+// ======================
 if (document.body.dataset.work === "1") {
 
     const completeBtn = document.getElementById("completeBtn");
@@ -145,7 +148,11 @@ if (document.body.dataset.work === "1") {
     }
 
 }
-// ===== work1 自動保存 =====
+// ======================
+// ワークページ（自動保存）
+// ======================
+if (document.querySelector("textarea")) {
+
 const textareas = document.querySelectorAll("textarea");
 const storageKey = window.location.pathname.split("/").pop().replace(".html", "");
 
@@ -164,7 +171,9 @@ textareas.forEach((textarea) => {
   });
 
 });
-// ===== work1 回答を復元 =====
+// ======================
+// ワークページ（自動復元）
+// ======================
 const savedAnswers = JSON.parse(localStorage.getItem(storageKey));
 
 if (savedAnswers) {
@@ -177,4 +186,5 @@ if (savedAnswers) {
 
   });
 
+}
 }

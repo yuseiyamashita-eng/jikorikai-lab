@@ -116,56 +116,32 @@ if (progressBar) {
 }
 
 // ======================
-// ワークページ（回答完了）
-// ======================
-if (document.body.dataset.work === "1") {
-
-    const completeBtn = document.getElementById("completeBtn");
-
-    if (completeBtn) {
-
-        if (localStorage.getItem("chapter1-work1") === "true") {
-            completeBtn.textContent = "☑ 回答済み";
-            completeBtn.classList.add("completed");
-        }
-
-        completeBtn.addEventListener("click", function () {
-
-            const completed = localStorage.getItem("chapter1-work1") === "true";
-
-            if (completed) {
-                localStorage.setItem("chapter1-work1", "false");
-                completeBtn.textContent = "☐ 回答済みにする";
-                completeBtn.classList.remove("completed");
-            } else {
-                localStorage.setItem("chapter1-work1", "true");
-                completeBtn.textContent = "☑ 回答済み";
-                completeBtn.classList.add("completed");
-    }
-
-});
-
-    }
-
-}
-// ======================
 // ワークページ（自動保存）
 // ======================
 if (document.querySelector("textarea")) {
 
 const textareas = document.querySelectorAll("textarea");
+const completeButtons = document.querySelectorAll(".answerCompleteBtn");
+
 const storageKey = window.location.pathname.split("/").pop().replace(".html", "");
 
 function updateProgress() {
 
-  const savedAnswers = JSON.parse(localStorage.getItem(storageKey)) || {};
+  const data = JSON.parse(localStorage.getItem(storageKey)) || {
+    answers: {},
+    completed: {}
+  };
 
   let answeredCount = 0;
 
-  textareas.forEach((textarea) => {
-    if (savedAnswers[textarea.id] && savedAnswers[textarea.id].trim() !== "") {
+  completeButtons.forEach((button) => {
+
+    const questionId = button.dataset.question;
+
+    if (data.completed[questionId]) {
       answeredCount++;
     }
+
   });
 
   document.getElementById("progressText").textContent =
@@ -173,37 +149,89 @@ function updateProgress() {
 
 }
 
-textareas.forEach((textarea) => {
+completeButtons.forEach((button) => {
 
-  textarea.addEventListener("input", () => {
+  button.addEventListener("click", () => {
 
-    const answers = {};
+    const data = JSON.parse(localStorage.getItem(storageKey)) || {
+      answers: {},
+      completed: {}
+    };
 
-    textareas.forEach((t) => {
-      answers[t.id] = t.value;
-    });
+    const questionId = button.dataset.question;
 
-    localStorage.setItem(storageKey, JSON.stringify(answers));
+    data.completed[questionId] = !data.completed[questionId];
+
+    // ボタン表示を切り替え
+    if (data.completed[questionId]) {
+      button.textContent = "☑ 回答済み";
+      button.classList.add("completed");
+    } else {
+      button.textContent = "☐ 回答済みにする";
+      button.classList.remove("completed");
+    }
+
+    localStorage.setItem(storageKey, JSON.stringify(data));
 
     updateProgress();
 
   });
 
 });
+
+textareas.forEach((textarea) => {
+
+  textarea.addEventListener("input", () => {
+
+  const data = JSON.parse(localStorage.getItem(storageKey)) || {
+    answers: {},
+    completed: {}
+  };
+
+  textareas.forEach((t) => {
+    data.answers[t.id] = t.value;
+  });
+
+  localStorage.setItem(storageKey, JSON.stringify(data));
+
+  updateProgress();
+
+});
+
+});
 // ======================
 // ワークページ（自動復元）
 // ======================
-const savedAnswers = JSON.parse(localStorage.getItem(storageKey));
+const savedData = JSON.parse(localStorage.getItem(storageKey));
 
-if (savedAnswers) {
+if (savedData) {
 
+  // 回答を復元
   textareas.forEach((textarea) => {
-
-    if (savedAnswers[textarea.id] !== undefined) {
-      textarea.value = savedAnswers[textarea.id];
+    
+    if (
+      savedData.answers &&
+      savedData.answers[textarea.id] !== undefined
+    ) {
+      textarea.value = savedData.answers[textarea.id];
     }
 
   });
+
+  // ★回答済みボタンを復元
+  completeButtons.forEach((button) => {
+
+  const questionId = button.dataset.question;
+
+  if (
+    savedData.completed &&
+    savedData.completed[questionId]
+  ) {
+    button.textContent = "☑ 回答済み";
+    button.classList.add("completed");
+  }
+
+});
 
 }
 

@@ -147,6 +147,7 @@ if (document.body.dataset.work === "1") {
 }
 // ===== work1 自動保存 =====
 const textareas = document.querySelectorAll("textarea");
+const storageKey = window.location.pathname.split("/").pop().replace(".html", "");
 
 textareas.forEach((textarea) => {
 
@@ -158,13 +159,13 @@ textareas.forEach((textarea) => {
       answers[t.id] = t.value;
     });
 
-    localStorage.setItem("work1Answers", JSON.stringify(answers));
+    localStorage.setItem(storageKey, JSON.stringify(answers));
 
   });
 
 });
 // ===== work1 回答を復元 =====
-const savedAnswers = JSON.parse(localStorage.getItem("work1Answers"));
+const savedAnswers = JSON.parse(localStorage.getItem(storageKey));
 
 if (savedAnswers) {
 

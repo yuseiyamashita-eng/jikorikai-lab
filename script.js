@@ -145,3 +145,21 @@ if (document.body.dataset.work === "1") {
     }
 
 }
+// ===== work1 自動保存 =====
+const textareas = document.querySelectorAll("textarea");
+
+textareas.forEach((textarea) => {
+
+  textarea.addEventListener("input", () => {
+
+    const answers = {};
+
+    textareas.forEach((t) => {
+      answers[t.id] = t.value;
+    });
+
+    localStorage.setItem("work1Answers", JSON.stringify(answers));
+
+  });
+
+});

@@ -163,3 +163,17 @@ textareas.forEach((textarea) => {
   });
 
 });
+// ===== work1 回答を復元 =====
+const savedAnswers = JSON.parse(localStorage.getItem("work1Answers"));
+
+if (savedAnswers) {
+
+  textareas.forEach((textarea) => {
+
+    if (savedAnswers[textarea.id] !== undefined) {
+      textarea.value = savedAnswers[textarea.id];
+    }
+
+  });
+
+}

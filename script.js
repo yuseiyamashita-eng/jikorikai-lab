@@ -167,10 +167,10 @@ completeButtons.forEach((button) => {
 
     // ボタン表示を切り替え
     if (data.completed[questionId]) {
-      button.textContent = "☑ 回答済み";
+      button.textContent = "☑";
       button.classList.add("completed");
     } else {
-      button.textContent = "☐ 回答済みにする";
+      button.textContent = "☐";
       button.classList.remove("completed");
     }
 
@@ -230,7 +230,7 @@ if (savedData) {
     savedData.completed &&
     savedData.completed[questionId]
   ) {
-    button.textContent = "☑ 回答済み";
+    button.textContent = "☑";
     button.classList.add("completed");
   }
 

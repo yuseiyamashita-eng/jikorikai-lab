@@ -123,6 +123,9 @@ if (document.querySelector("textarea")) {
 const textareas = document.querySelectorAll("textarea");
 const completeButtons = document.querySelectorAll(".answerCompleteBtn");
 
+const questionHeaders = document.querySelectorAll(".question-header");
+const questionBodies = document.querySelectorAll(".question-body");
+
 const storageKey = window.location.pathname.split("/").pop().replace(".html", "");
 
 function updateProgress() {
@@ -183,22 +186,22 @@ textareas.forEach((textarea) => {
 
   textarea.addEventListener("input", () => {
 
-  const data = JSON.parse(localStorage.getItem(storageKey)) || {
-    answers: {},
-    completed: {}
-  };
+    const data = JSON.parse(localStorage.getItem(storageKey)) || {
+      answers: {},
+      completed: {}
+    };
 
-  textareas.forEach((t) => {
-    data.answers[t.id] = t.value;
+    // 入力された項目だけ保存
+    data.answers[textarea.id] = textarea.value;
+
+    localStorage.setItem(storageKey, JSON.stringify(data));
+
+    updateProgress();
+
   });
 
-  localStorage.setItem(storageKey, JSON.stringify(data));
-
-  updateProgress();
-
 });
 
-});
 // ======================
 // ワークページ（自動復元）
 // ======================
@@ -236,5 +239,23 @@ if (savedData) {
 }
 
 updateProgress();
+
+questionHeaders.forEach((header) => {
+
+    header.addEventListener("click", (event) => {
+
+        if (event.target.closest(".answerCompleteBtn")) {
+            return;
+        }
+
+        const card = header.closest(".question-card");
+        const body = card.querySelector(".question-body");
+
+        body.classList.toggle("open");
+        header.classList.toggle("open");
+
+    });
+
+});
 
 }

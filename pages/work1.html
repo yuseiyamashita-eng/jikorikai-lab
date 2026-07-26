@@ -24,15 +24,42 @@
 
         <p id="progressText">進捗 0 / 20問回答済み</p>
 
-        <h2>Q1.あなたの長所を1つ書いてください。</h2>
-        
-        <textarea id="question1"></textarea>
+<div class="question-card">
 
-        <div class="work-buttons">
-            <button class="complete-button answerCompleteBtn" data-question="question1">
-                ☐ 回答済みにする
-            </button>
+    <div class="question-header">
+
+        <button
+            class="complete-button answerCompleteBtn"
+            data-question="question1"
+        >
+            ☐
+        </button>
+
+        <h2>Q1. あなたの長所を1つ書いてください。</h2>
+
+        <span class="toggle-icon">▼</span>
+
+    </div>
+
+    <div class="question-body">
+
+        <div class="answer-grid">
+
+            <div class="answer-item">
+                <label for="question1-answer1">長所</label>
+                <textarea id="question1-answer1"></textarea>
+            </div>
+
+            <div class="answer-item">
+                <label for="question1-answer2">その根拠</label>
+                <textarea id="question1-answer2"></textarea>
+            </div>
+
         </div>
+
+    </div>
+
+</div>
 
         <h2>Q2.最近うれしかった出来事を1つ書いてください。</h2>
 

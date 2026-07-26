@@ -238,11 +238,12 @@ nav a {
 }
 
 textarea {
-    width: 550px;
+    width: 100%;
     height: 120px;
     padding: 12px;
     font-size: 16px;
     resize: vertical;
+    box-sizing: border-box;
 }
 
 .work-buttons {
@@ -266,4 +267,55 @@ textarea {
 
 main h2 {
     margin-top: 0;
+}
+
+.question-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+.question-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+}
+
+.question-header h2 {
+    flex: 1;
+    margin: 0;
+    text-align: left;
+    font-size: 28px;
+}
+
+.toggle-icon {
+    transition: transform 0.3s;
+    font-size: 20px;
+}
+
+.question-body{
+    display: none;
+    padding: 20px;
+}
+
+.question-body.open{
+    display: block;
+}
+
+.answer-item{
+    display:flex;
+    flex-direction:column;
+}
+
+.answer-item label{
+    text-align:left;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.question-header.open .toggle-icon{
+    transform: rotate(180deg);
 }

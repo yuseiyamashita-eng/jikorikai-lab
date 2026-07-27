@@ -147,8 +147,10 @@ function updateProgress() {
 
   });
 
+  const totalQuestions = document.querySelectorAll(".question-card").length;
+
   document.getElementById("progressText").textContent =
-    `進捗 ${answeredCount} / ${textareas.length}問回答済み`;
+  `進捗 ${answeredCount} / ${totalQuestions}問回答済み`;
 
 }
 

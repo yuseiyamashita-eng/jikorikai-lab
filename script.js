@@ -238,6 +238,29 @@ if (savedData) {
 
 }
 
+// ======================
+// 入力済みカードを自動で開く
+// ======================
+
+const questionCards = document.querySelectorAll(".question-card");
+
+questionCards.forEach((card) => {
+
+    const textareas = card.querySelectorAll("textarea");
+    const body = card.querySelector(".question-body");
+    const header = card.querySelector(".question-header");
+
+    const hasAnswer = [...textareas].some(textarea =>
+        textarea.value.trim() !== ""
+    );
+
+    if (hasAnswer) {
+        body.classList.add("open");
+        header.classList.add("open");
+    }
+
+});
+
 updateProgress();
 
 questionHeaders.forEach((header) => {

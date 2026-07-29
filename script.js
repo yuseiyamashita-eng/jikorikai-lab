@@ -1,6 +1,10 @@
 // ======================
 // Chapter1 データ
 // ======================
+
+// ======================
+// 定数
+// ======================
 const chapter1Videos = [
     "chapter1-video1",
     "chapter1-video2",
@@ -54,6 +58,29 @@ if (button && document.body.dataset.chapter) {
     });
 
 }
+// ======================
+// 共通関数
+// ======================
+
+// ======================
+// ステータス表示更新
+// ======================
+function updateStatus(status, isCompleted) {
+
+    status.classList.remove(
+        "status-completed",
+        "status-incomplete"
+    );
+
+    if (isCompleted) {
+        status.textContent = "☑";
+        status.classList.add("status-completed");
+    } else {
+        status.textContent = "☐";
+        status.classList.add("status-incomplete");
+    }
+
+}
 
 // ======================
 // 動画一覧ページ
@@ -66,15 +93,13 @@ if (document.getElementById("video1Status")) {
 
         if (!status) continue;
 
-        if (localStorage.getItem(chapter1Videos[i]) === "true") {
-            status.textContent = "☑";
-        } else {
-            status.textContent = "☐";
-        }
-
+        updateStatus(
+            status,
+            localStorage.getItem(chapter1Videos[i]) === "true"
+        );
     }
 
-}
+  }
 
 // ======================
 // ワーク一覧ページ
@@ -96,11 +121,10 @@ if (document.getElementById("work1Status")) {
 
 const completedCount = Object.values(workData.completed).filter(Boolean).length;
 
-if (completedCount >= WORK_COMPLETE_THRESHOLD) {
-    status.textContent = "☑";
-} else {
-    status.textContent = "☐";
-}
+updateStatus(
+    status,
+    completedCount >= WORK_COMPLETE_THRESHOLD
+);
 
     }
 

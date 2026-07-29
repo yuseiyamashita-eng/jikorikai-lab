@@ -117,40 +117,7 @@ nav a {
     background: #4CAF50;
     border-radius: 999px;
 }
-.video-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
 
-.video-table td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-}
-
-.video-table tbody tr:hover {
-    background-color: #f9f9f9;
-}
-
-.video-table a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-.video-table a:hover {
-    color: #007bff;
-}
-.video-table th:first-child,
-.video-table td:first-child {
-    width: 60px;
-    text-align: center;
-}
-
-.video-table th:last-child,
-.video-table td:last-child {
-    text-align: left;
-}
 .video-table {
     width: 100%;
     border-collapse: collapse;
@@ -304,6 +271,10 @@ textarea {
     font-size: 16px;
     resize: vertical;
     box-sizing: border-box;
+}
+
+.work-status-incomplete {
+    color: #000000;
 }
 
 .work-buttons {

@@ -64,6 +64,15 @@ header h2 {
     color: #2c3e50;
 }
 
+header h2 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+header h2 a:hover {
+    color: inherit;
+}
+
 nav a {
     text-decoration: none;
     color: #2c3e50;
@@ -172,6 +181,11 @@ nav a {
 
     width: auto;
     height: auto;
+}
+
+.complete-button.completed {
+    background-color: #4f63c6;
+    color: white;
 }
 
 .question-complete-button {

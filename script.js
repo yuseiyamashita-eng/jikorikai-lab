@@ -9,10 +9,12 @@ const chapter1Videos = [
     "chapter1-video5"
 ];
 const chapter1Works = [
-    "chapter1-work1",
-    "chapter1-work2",
-    "chapter1-work3"
+    "work1",
+    "work2",
+    "work3"
 ];
+// ワーク完了とみなす回答済み数
+const WORK_COMPLETE_THRESHOLD = 3;
 
 // ======================
 // 動画ページ
@@ -74,6 +76,9 @@ if (document.getElementById("video1Status")) {
 
 }
 
+// ======================
+// ワーク一覧ページ
+// ======================
 if (document.getElementById("work1Status")) {
 
     for (let i = 0; i < chapter1Works.length; i++) {
@@ -82,11 +87,20 @@ if (document.getElementById("work1Status")) {
 
         if (!status) continue;
 
-        if (localStorage.getItem(chapter1Works[i]) === "true") {
-            status.textContent = "☑";
-        } else {
-            status.textContent = "☐";
-        }
+        const workData = JSON.parse(localStorage.getItem(chapter1Works[i]));
+
+        if (!workData) {
+          status.textContent = "☐";
+          continue;
+}
+
+const completedCount = Object.values(workData.completed).filter(Boolean).length;
+
+if (completedCount >= WORK_COMPLETE_THRESHOLD) {
+    status.textContent = "☑";
+} else {
+    status.textContent = "☐";
+}
 
     }
 

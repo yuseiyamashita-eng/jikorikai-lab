@@ -188,7 +188,7 @@ function updateProgress() {
   const totalQuestions = document.querySelectorAll(".question-card").length;
 
   document.getElementById("progressText").textContent =
-  `進捗 ${answeredCount} / ${totalQuestions}問回答済み`;
+  `${answeredCount} / ${totalQuestions}問回答済み`;
 
 }
 

@@ -15,8 +15,11 @@ const chapter1Videos = [
 const chapter1Works = [
     "work1",
     "work2",
-    "work3"
+    "work3",
+    "work4",
+    "work5"
 ];
+
 // ワーク完了とみなす回答済み数
 const WORK_COMPLETE_THRESHOLD = 3;
 

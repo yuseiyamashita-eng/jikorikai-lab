@@ -334,7 +334,7 @@ const savedData = JSON.parse(localStorage.getItem(storageKey));
 if (savedData) {
 
   // 回答を復元
-  document.querySelectorAll("textarea, input[type='radio']").forEach((input) => {
+  answerInputs.forEach((input) => {
 
   restoreAnswer(savedData, input);
 

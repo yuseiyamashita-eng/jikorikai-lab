@@ -237,6 +237,42 @@ function updateProgress() {
 
 }
 
+function saveAnswer(data, input) {
+
+  if (input.type === "radio") {
+
+    if (input.checked) {
+      data.answers[input.name] = input.value;
+    }
+
+  } else {
+
+    data.answers[input.id] = input.value;
+
+  }
+
+}
+
+function restoreAnswer(savedData, input) {
+
+  if (!savedData.answers) return;
+
+  if (input.type === "radio") {
+
+    if (savedData.answers[input.name] === input.value) {
+      input.checked = true;
+    }
+
+  } else {
+
+    if (savedData.answers[input.id] !== undefined) {
+      input.value = savedData.answers[input.id];
+    }
+
+  }
+
+}
+
 completeButtons.forEach((button) => {
 
   button.addEventListener("click", () => {
@@ -269,7 +305,10 @@ completeButtons.forEach((button) => {
 
 answerInputs.forEach((input) => {
 
-  input.addEventListener("input", () => {
+  const eventType =
+    input.type === "radio" ? "change" : "input";
+
+  input.addEventListener(eventType, () => {
 
     const data = JSON.parse(localStorage.getItem(storageKey)) || {
       answers: {},
@@ -277,17 +316,7 @@ answerInputs.forEach((input) => {
     };
 
     // 入力された項目だけ保存
-    if (input.type === "radio") {
-
-      if (input.checked) {
-        data.answers[input.name] = input.value;
-      }
-
-    } else {
-
-      data.answers[input.id] = input.value;
-
-    }
+    saveAnswer(data, input);
 
     localStorage.setItem(storageKey, JSON.stringify(data));
 
@@ -305,14 +334,9 @@ const savedData = JSON.parse(localStorage.getItem(storageKey));
 if (savedData) {
 
   // 回答を復元
-  document.querySelectorAll("textarea").forEach((textarea) => {
+  document.querySelectorAll("textarea, input[type='radio']").forEach((input) => {
 
-  if (
-    savedData.answers &&
-    savedData.answers[textarea.id] !== undefined
-  ) {
-    textarea.value = savedData.answers[textarea.id];
-  }
+  restoreAnswer(savedData, input);
 
 });
 

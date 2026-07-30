@@ -34,6 +34,26 @@ const chapter1Works = [
   {
     storageKey: "work5",
     completeThreshold: 2
+  },
+  {
+    storageKey: "work6",
+    completeThreshold: 2
+  },
+  {
+    storageKey: "work7",
+    completeThreshold: 2
+  },
+  {
+    storageKey: "work8",
+    completeThreshold: 2
+  },
+  {
+    storageKey: "work9",
+    completeThreshold: 2
+  },
+  {
+    storageKey: "work10",
+    completeThreshold: 2
   }
 ];
 
@@ -176,9 +196,14 @@ if (progressBar) {
 // ======================
 // ワークページ（自動保存）
 // ======================
-if (document.querySelector("textarea")) {
+if (
+  document.querySelector("textarea") ||
+  document.querySelector('input[type="radio"]')
+) {
 
-const textareas = document.querySelectorAll("textarea");
+const answerInputs = document.querySelectorAll(
+  'textarea, input[type="radio"]'
+);
 const completeButtons = document.querySelectorAll(".answerCompleteBtn");
 
 const questionHeaders = document.querySelectorAll(".question-header");
@@ -242,9 +267,9 @@ completeButtons.forEach((button) => {
 
 });
 
-textareas.forEach((textarea) => {
+answerInputs.forEach((input) => {
 
-  textarea.addEventListener("input", () => {
+  input.addEventListener("input", () => {
 
     const data = JSON.parse(localStorage.getItem(storageKey)) || {
       answers: {},
@@ -252,7 +277,17 @@ textareas.forEach((textarea) => {
     };
 
     // 入力された項目だけ保存
-    data.answers[textarea.id] = textarea.value;
+    if (input.type === "radio") {
+
+      if (input.checked) {
+        data.answers[input.name] = input.value;
+      }
+
+    } else {
+
+      data.answers[input.id] = input.value;
+
+    }
 
     localStorage.setItem(storageKey, JSON.stringify(data));
 
@@ -270,16 +305,16 @@ const savedData = JSON.parse(localStorage.getItem(storageKey));
 if (savedData) {
 
   // 回答を復元
-  textareas.forEach((textarea) => {
-    
-    if (
-      savedData.answers &&
-      savedData.answers[textarea.id] !== undefined
-    ) {
-      textarea.value = savedData.answers[textarea.id];
-    }
+  document.querySelectorAll("textarea").forEach((textarea) => {
 
-  });
+  if (
+    savedData.answers &&
+    savedData.answers[textarea.id] !== undefined
+  ) {
+    textarea.value = savedData.answers[textarea.id];
+  }
+
+});
 
   // ★回答済みボタンを復元
   completeButtons.forEach((button) => {

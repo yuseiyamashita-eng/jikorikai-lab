@@ -385,3 +385,10 @@ main h2 {
 .question-header.open .toggle-icon{
     transform: rotate(180deg);
 }
+
+.radio-group .answer-item {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}

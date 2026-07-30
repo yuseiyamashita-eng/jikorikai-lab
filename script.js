@@ -12,16 +12,30 @@ const chapter1Videos = [
     "chapter1-video4",
     "chapter1-video5"
 ];
-const chapter1Works = [
-    "work1",
-    "work2",
-    "work3",
-    "work4",
-    "work5"
-];
 
-// ワーク完了とみなす回答済み数
-const WORK_COMPLETE_THRESHOLD = 3;
+// ワーク設定
+const chapter1Works = [
+  {
+    storageKey: "work1",
+    completeThreshold: 3
+  },
+  {
+    storageKey: "work2",
+    completeThreshold: 3
+  },
+  {
+    storageKey: "work3",
+    completeThreshold: 3
+  },
+  {
+    storageKey: "work4",
+    completeThreshold: 3
+  },
+  {
+    storageKey: "work5",
+    completeThreshold: 2
+  }
+];
 
 // ======================
 // 動画ページ
@@ -115,18 +129,21 @@ if (document.getElementById("work1Status")) {
 
         if (!status) continue;
 
-        const workData = JSON.parse(localStorage.getItem(chapter1Works[i]));
+        const workData = JSON.parse(
+            localStorage.getItem(chapter1Works[i].storageKey)
+        );
 
         if (!workData) {
-          status.textContent = "☐";
-          continue;
-}
+            status.textContent = "☐";
+            continue;
+        }
 
-const completedCount = Object.values(workData.completed).filter(Boolean).length;
+const completedCount =
+    Object.values(workData.completed).filter(Boolean).length;
 
 updateStatus(
     status,
-    completedCount >= WORK_COMPLETE_THRESHOLD
+    completedCount >= chapter1Works[i].completeThreshold
 );
 
     }

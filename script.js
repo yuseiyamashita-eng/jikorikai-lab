@@ -202,7 +202,7 @@ if (
 ) {
 
 const answerSelector =
-  "textarea, input[type='radio'], input[type='checkbox']";
+  "textarea, input[type='text'], input[type='radio'], input[type='checkbox'], select";
 
 const answerInputs = document.querySelectorAll(answerSelector);
 

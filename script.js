@@ -202,7 +202,7 @@ if (
 ) {
 
 const answerInputs = document.querySelectorAll(
-  'textarea, input[type="radio"]'
+  "textarea, input[type='radio'], input[type='checkbox']"
 );
 const completeButtons = document.querySelectorAll(".answerCompleteBtn");
 
@@ -245,6 +245,10 @@ function saveAnswer(data, input) {
       data.answers[input.name] = input.value;
     }
 
+  } else if (input.type === "checkbox") {
+
+    data.answers[input.id] = input.checked;
+
   } else {
 
     data.answers[input.id] = input.value;
@@ -261,6 +265,12 @@ function restoreAnswer(savedData, input) {
 
     if (savedData.answers[input.name] === input.value) {
       input.checked = true;
+    }
+
+  } else if (input.type === "checkbox") {
+
+    if (savedData.answers[input.id] !== undefined) {
+      input.checked = savedData.answers[input.id];
     }
 
   } else {

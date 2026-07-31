@@ -376,6 +376,10 @@ main h2 {
     gap: 20px;
 }
 
+.answer-grid.single-answer {
+    grid-template-columns: 1fr;
+}
+
 @media (max-width: 767px) {
     .answer-grid {
         grid-template-columns: 1fr;

@@ -392,3 +392,16 @@ main h2 {
     justify-content: flex-start;
     gap: 10px;
 }
+
+.checkbox-title {
+    color: #444;
+}
+
+.checkbox-group {
+    text-align: left;
+}
+
+.checkbox-group label {
+    display: block;
+    margin-bottom: 12px;
+}

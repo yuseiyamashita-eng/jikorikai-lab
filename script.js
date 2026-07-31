@@ -201,9 +201,11 @@ if (
   document.querySelector('input[type="radio"]')
 ) {
 
-const answerInputs = document.querySelectorAll(
-  "textarea, input[type='radio'], input[type='checkbox']"
-);
+const answerSelector =
+  "textarea, input[type='radio'], input[type='checkbox']";
+
+const answerInputs = document.querySelectorAll(answerSelector);
+
 const completeButtons = document.querySelectorAll(".answerCompleteBtn");
 
 const questionHeaders = document.querySelectorAll(".question-header");
@@ -280,6 +282,26 @@ function restoreAnswer(savedData, input) {
     }
 
   }
+
+}
+
+function hasAnsweredQuestion(question) {
+
+  const inputs = question.querySelectorAll(answerSelector);
+
+  return [...inputs].some((input) => {
+
+    if (input.type === "radio") {
+      return input.checked;
+    }
+
+    if (input.type === "checkbox") {
+      return input.checked;
+    }
+
+    return input.value.trim() !== "";
+
+  });
 
 }
 
@@ -375,13 +397,10 @@ const questionCards = document.querySelectorAll(".question-card");
 
 questionCards.forEach((card) => {
 
-    const textareas = card.querySelectorAll("textarea");
     const body = card.querySelector(".question-body");
     const header = card.querySelector(".question-header");
 
-    const hasAnswer = [...textareas].some(textarea =>
-        textarea.value.trim() !== ""
-    );
+    const hasAnswer = hasAnsweredQuestion(card);
 
     if (hasAnswer) {
         body.classList.add("open");

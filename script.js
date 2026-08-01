@@ -173,9 +173,13 @@ updateStatus(
 // ======================
 // ホーム画面
 // ======================
-const progressBar = document.getElementById("chapter1Progress");
+const chapter1VideoProgress =
+  document.getElementById("chapter1-video-progress");
 
-if (progressBar) {
+const chapter1WorkProgress =
+  document.getElementById("chapter1-work-progress");
+
+if (chapter1VideoProgress) {
 
     let completedCount = 0;
 
@@ -189,7 +193,35 @@ if (progressBar) {
 
     const progress = (completedCount / chapter1Videos.length) * 100;
 
-    progressBar.style.width = progress + "%";
+    chapter1VideoProgress.style.width = progress + "%";
+
+}
+
+if (chapter1WorkProgress) {
+
+    let completedWorkCount = 0;
+
+    for (let i = 0; i < chapter1Works.length; i++) {
+
+        const workData = JSON.parse(
+            localStorage.getItem(chapter1Works[i].storageKey)
+        );
+
+        if (!workData) continue;
+
+        const completedCount =
+            Object.values(workData.completed).filter(Boolean).length;
+
+        if (completedCount >= chapter1Works[i].completeThreshold) {
+            completedWorkCount++;
+        }
+
+    }
+
+    const workProgress =
+        (completedWorkCount / chapter1Works.length) * 100;
+
+    chapter1WorkProgress.style.width = workProgress + "%";
 
 }
 

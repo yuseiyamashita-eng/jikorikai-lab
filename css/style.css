@@ -127,6 +127,11 @@ nav a {
     border-radius: 999px;
 }
 
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+}
+
 .video-table {
     width: 100%;
     border-collapse: collapse;

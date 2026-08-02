@@ -179,6 +179,12 @@ const chapter1VideoProgress =
 const chapter1WorkProgress =
   document.getElementById("chapter1-work-progress");
 
+const chapter1VideoCount =
+  document.getElementById("chapter1VideoCount");
+
+const chapter1WorkCount =
+  document.getElementById("chapter1WorkCount");
+
 if (chapter1VideoProgress) {
 
     let completedCount = 0;
@@ -194,6 +200,9 @@ if (chapter1VideoProgress) {
     const progress = (completedCount / chapter1Videos.length) * 100;
 
     chapter1VideoProgress.style.width = progress + "%";
+
+    chapter1VideoCount.textContent =
+    `${completedCount} / ${chapter1Videos.length}`;
 
 }
 
@@ -222,6 +231,9 @@ if (chapter1WorkProgress) {
         (completedWorkCount / chapter1Works.length) * 100;
 
     chapter1WorkProgress.style.width = workProgress + "%";
+
+    chapter1WorkCount.textContent =
+    `${completedWorkCount} / ${chapter1Works.length}`;
 
 }
 

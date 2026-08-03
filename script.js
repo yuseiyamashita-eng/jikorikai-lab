@@ -33,7 +33,7 @@ const chapter1Works = [
   },
   {
     storageKey: "work5",
-    completeThreshold: 2
+    completeThreshold: 3
   },
   {
     storageKey: "work6",
@@ -57,8 +57,10 @@ const chapter1Works = [
   }
 ];
 
+// ======================
 // 学習スケジュール設定
-const startDate = new Date(2026, 8, 23); // 2026年8月3日（月は0始まり）
+// ======================
+const startDate = new Date(2026, 6, 23); // 年,月,日（月は0始まり）
 const goalDays = 100;
 
 const startDateText =
@@ -72,6 +74,48 @@ goalDate.setDate(
 
 const goalDateText =
     `${goalDate.getMonth() + 1}/${goalDate.getDate()}`;
+
+// ======================
+// Chapterスケジュール設定
+// ======================
+const chapterSchedule = [
+  {
+    id: 1,
+    name: "Chapter1",
+    startDay: 1,
+    endDay: 14
+  },
+  {
+    id: 2,
+    name: "Chapter2",
+    startDay: 15,
+    endDay: 30
+  },
+  {
+    id: 3,
+    name: "Chapter3",
+    startDay: 31,
+    endDay: 51
+  },
+  {
+    id: 4,
+    name: "Chapter4",
+    startDay: 52,
+    endDay: 70
+  },
+  {
+    id: 5,
+    name: "Chapter5",
+    startDay: 71,
+    endDay: 80
+  },
+  {
+    id: 6,
+    name: "Chapter6",
+    startDay: 81,
+    endDay: 100
+  }
+];
 
 // ======================
 // 動画ページ
@@ -230,7 +274,7 @@ const scheduleProgress =
   ((currentDay - 1) / (goalDays - 1)) * 100;
 
 if (studyDay) {
-    studyDay.textContent = `📅 今日は ${currentDay}日目`;
+    studyDay.textContent = `📅 今日は ${currentDay}日目 です`;
 }
 
 if (startDateLabel) {

@@ -57,6 +57,22 @@ const chapter1Works = [
   }
 ];
 
+// 学習スケジュール設定
+const startDate = new Date(2026, 8, 23); // 2026年8月3日（月は0始まり）
+const goalDays = 100;
+
+const startDateText =
+  `${startDate.getMonth() + 1}/${startDate.getDate()}`;
+
+const goalDate = new Date(startDate);
+
+goalDate.setDate(
+    goalDate.getDate() + goalDays - 1
+);
+
+const goalDateText =
+    `${goalDate.getMonth() + 1}/${goalDate.getDate()}`;
+
 // ======================
 // 動画ページ
 // ======================
@@ -191,8 +207,14 @@ const studyDay =
 const scheduleProgressBar =
   document.getElementById("scheduleProgress");
 
-const startDate = new Date("2026-08-03");
-const goalDays = 90;
+const scheduleMarker =
+  document.getElementById("scheduleMarker");
+
+const startDateLabel =
+  document.getElementById("startDateLabel");
+
+const goalDateLabel =
+  document.getElementById("goalDateLabel");
 
 const today = new Date();
 
@@ -205,15 +227,27 @@ const currentDay = Math.min(
 );
 
 const scheduleProgress =
-  (currentDay / goalDays) * 100;
+  ((currentDay - 1) / (goalDays - 1)) * 100;
 
 if (studyDay) {
     studyDay.textContent = `📅 今日は ${currentDay}日目`;
-  }
+}
+
+if (startDateLabel) {
+    startDateLabel.textContent = startDateText;
+}
+
+if (goalDateLabel) {
+    goalDateLabel.textContent = goalDateText;
+}
 
 if (scheduleProgressBar) {
     scheduleProgressBar.style.width =
       scheduleProgress + "%";
+}
+
+if (scheduleMarker) {
+    scheduleMarker.style.left = `${scheduleProgress}%`;
 }
 
 if (chapter1VideoProgress) {

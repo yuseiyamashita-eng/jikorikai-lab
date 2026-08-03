@@ -150,6 +150,7 @@ nav a {
 }
 
 .schedule-bar {
+    position: relative;
     width: 100%;
     height: 14px;
     background: #ddd;
@@ -164,10 +165,18 @@ nav a {
     border-radius: 999px;
 }
 
-.schedule-today {
-    margin-top: 8px;
+.schedule-track {
+    position: relative;
+}
+
+.schedule-marker {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    transform: translateX(-50%);
     text-align: center;
     font-size: 14px;
+    line-height: 1.2;
 }
 
 .video-table {

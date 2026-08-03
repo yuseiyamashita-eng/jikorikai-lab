@@ -118,6 +118,23 @@ const chapterSchedule = [
 ];
 
 // ======================
+// Chapterスケジュール関数
+// ======================
+function getChapterDateRange(chapter) {
+
+  const start = new Date(startDate);
+  start.setDate(start.getDate() + chapter.startDay - 1);
+
+  const end = new Date(startDate);
+  end.setDate(end.getDate() + chapter.endDay - 1);
+
+  return {
+    start,
+    end
+  };
+}
+
+// ======================
 // 動画ページ
 // ======================
 const button = document.getElementById("completeBtn");
@@ -345,6 +362,22 @@ if (chapter1WorkProgress) {
     `${completedWorkCount} / ${chapter1Works.length}`;
 
 }
+
+// ======================
+// Chapter学習期間表示
+// ======================
+chapterSchedule.forEach((chapter) => {
+
+  const range = getChapterDateRange(chapter);
+
+  const period = document.getElementById(
+    `chapter${chapter.id}Period`
+  );
+
+  period.textContent =
+    `${range.start.getMonth() + 1}/${range.start.getDate()}〜${range.end.getMonth() + 1}/${range.end.getDate()}`;
+
+});
 
 // ======================
 // ワークページ（自動保存）

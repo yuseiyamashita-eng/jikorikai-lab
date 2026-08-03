@@ -302,6 +302,17 @@ if (goalDateLabel) {
     goalDateLabel.textContent = goalDateText;
 }
 
+const todayDate = document.getElementById("todayDate");
+
+if (todayDate) {
+
+    const weekNames = ["日", "月", "火", "水", "木", "金", "土"];
+
+    todayDate.textContent =
+      `${today.getFullYear()}年${today.getMonth() + 1}月${today.getDate()}日（${weekNames[today.getDay()]}）`;
+
+}
+
 if (scheduleProgressBar) {
     scheduleProgressBar.style.width =
       scheduleProgress + "%";

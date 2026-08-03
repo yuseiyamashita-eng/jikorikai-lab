@@ -97,6 +97,12 @@ nav a {
     color: #666;
 }
 
+#todayDate {
+    margin: 4px 0 16px;
+    font-size: 15px;
+    color: #666;
+}
+
 .video-box {
     width: 700px;
     height: 400px;

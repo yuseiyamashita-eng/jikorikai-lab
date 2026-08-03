@@ -185,6 +185,37 @@ const chapter1VideoCount =
 const chapter1WorkCount =
   document.getElementById("chapter1WorkCount");
 
+const studyDay =
+  document.getElementById("studyDay");
+
+const scheduleProgressBar =
+  document.getElementById("scheduleProgress");
+
+const startDate = new Date("2026-08-03");
+const goalDays = 90;
+
+const today = new Date();
+
+const elapsedDays =
+  Math.floor((today - startDate) / (1000 * 60 * 60 * 24)) + 1;
+
+const currentDay = Math.min(
+  Math.max(elapsedDays, 1),
+  goalDays
+);
+
+const scheduleProgress =
+  (currentDay / goalDays) * 100;
+
+if (studyDay) {
+    studyDay.textContent = `📅 今日は ${currentDay}日目`;
+  }
+
+if (scheduleProgressBar) {
+    scheduleProgressBar.style.width =
+      scheduleProgress + "%";
+}
+
 if (chapter1VideoProgress) {
 
     let completedCount = 0;

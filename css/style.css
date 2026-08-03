@@ -132,6 +132,44 @@ nav a {
     justify-content: space-between;
 }
 
+.study-schedule {
+    max-width: 750px;
+    margin: 0 auto 40px;
+}
+
+.study-schedule h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.schedule-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.schedule-bar {
+    width: 100%;
+    height: 14px;
+    background: #ddd;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.schedule-progress {
+    width: 0%;
+    height: 100%;
+    background: #4CAF50;
+    border-radius: 999px;
+}
+
+.schedule-today {
+    margin-top: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
 .video-table {
     width: 100%;
     border-collapse: collapse;

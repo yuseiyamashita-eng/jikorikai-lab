@@ -385,9 +385,11 @@ chapterSchedule.forEach((chapter) => {
     `chapter${chapter.id}Period`
   );
 
-  period.textContent =
-    `${range.start.getMonth() + 1}/${range.start.getDate()}〜${range.end.getMonth() + 1}/${range.end.getDate()}`;
-
+  if (period) {
+    period.textContent =
+      `${range.start.getMonth() + 1}/${range.start.getDate()}〜${range.end.getMonth() + 1}/${range.end.getDate()}`;
+  }
+  
 });
 
 // ======================

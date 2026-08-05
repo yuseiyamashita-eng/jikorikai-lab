@@ -391,6 +391,27 @@ chapterSchedule.forEach((chapter) => {
 });
 
 // ======================
+// 現在のChapterを強調表示
+// ======================
+chapterSchedule.forEach((chapter) => {
+
+    if (
+        currentDay >= chapter.startDay &&
+        currentDay <= chapter.endDay
+    ) {
+
+        const chapterCard =
+            document.getElementById(`chapter${chapter.id}`);
+
+        if (chapterCard) {
+            chapterCard.classList.add("active-chapter");
+        }
+
+    }
+
+});
+
+// ======================
 // ワークページ（自動保存）
 // ======================
 if (
